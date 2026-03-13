@@ -41,8 +41,8 @@ async function main() {
 
   // ─── Journal Settings ───────────────────────────────────
   const settings = [
-    { key: "journal_title", value: "Asian Journal of Education and Social Studies" },
-    { key: "journal_abbreviation", value: "AJESS" },
+    { key: "journal_title", value: "Scholar Node" },
+    { key: "journal_abbreviation", value: "SN" },
     { key: "issn", value: "2581-6268" },
     { key: "journal_description", value: "Asian Journal of Education and Social Studies (ISSN: 2581-6268) aims to publish high quality papers in all areas of Education and Social sciences. By not excluding papers based on novelty, this journal facilitates the research and wishes to publish papers as long as they are technically correct and scientifically motivated. The journal also encourages the submission of useful reports of negative results. This is a quality controlled, OPEN peer-reviewed, open-access INTERNATIONAL journal." },
     { key: "journal_email", value: "editor@scholarnode.com" },

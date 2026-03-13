@@ -1,9 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Search, Menu } from "lucide-react";
 
 export default function Header({ settings }: { settings: Record<string, string> }) {
-  const journalTitle = settings["journal_title"] || "Academic Journal";
-  const abbreviation = settings["journal_abbreviation"] || "AJ";
+  const journalTitle = "Scholar Node";
+  const abbreviation = settings["journal_abbreviation"] || "SN";
   const issn = settings["issn"] || "";
 
   return (
@@ -11,15 +12,26 @@ export default function Header({ settings }: { settings: Record<string, string> 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 sm:h-20 items-center justify-between">
           <div className="flex flex-1 items-center justify-start">
-            <Link href="/" className="flex flex-col items-start gap-1 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg group">
-              <span className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 group-hover:text-blue-600 transition-colors dark:text-zinc-100 dark:group-hover:text-blue-400">
-                {abbreviation}
-              </span>
-              {issn && (
-                <span className="text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                  ISSN: {issn}
+            <Link href="/" className="flex items-center gap-3 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-lg group">
+              <div className="relative h-10 w-10 sm:h-12 sm:w-12 overflow-hidden rounded-lg">
+                <Image
+                  src="/logo.png"
+                  alt="Scholar Node Logo"
+                  fill
+                  className="object-contain transition-transform group-hover:scale-105"
+                  priority
+                />
+              </div>
+              <div className="flex flex-col items-start translate-y-[1px]">
+                <span className="text-lg sm:text-xl font-bold tracking-tight text-zinc-900 group-hover:text-blue-600 transition-colors dark:text-zinc-100 dark:group-hover:text-blue-400 leading-tight">
+                  {journalTitle}
                 </span>
-              )}
+                {issn && (
+                  <span className="text-[10px] sm:text-xs font-medium text-zinc-500 dark:text-zinc-400">
+                    ISSN: {issn}
+                  </span>
+                )}
+              </div>
             </Link>
           </div>
 

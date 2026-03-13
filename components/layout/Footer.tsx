@@ -1,8 +1,9 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer({ settings }: { settings: Record<string, string> }) {
-  const journalTitle = settings["journal_title"] || "Academic Journal";
-  const publisher = settings["publisher"] || "Scholar Node Publishing";
+  const journalTitle = "Scholar Node";
+  const publisher = "Scholar Node Publishing";
   const issn = settings["issn"] || "";
 
   return (
@@ -10,10 +11,15 @@ export default function Footer({ settings }: { settings: Record<string, string> 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-12">
           <div className="md:col-span-2">
-            <Link href="/" className="inline-block mb-6">
-              <span className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-                {journalTitle}
-              </span>
+            <Link href="/" className="inline-block mb-6 group">
+              <div className="relative h-12 w-48 overflow-hidden rounded-lg">
+                <Image
+                  src="/logo_with_name.png"
+                  alt="Scholar Node"
+                  fill
+                  className="object-contain transition-transform group-hover:scale-105"
+                />
+              </div>
             </Link>
             <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed max-w-md">
               A peer-reviewed, open-access international journal dedicated to publishing high-quality research across various disciplines.
