@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -10,4 +5,133 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model JournalSetting {
+  id    String @id @default(cuid())
+  key   String @unique
+  value String
+}
+
+model Volume {
+  id        String   @id @default(cuid())
+  number    Int
+  year      Int
+  createdAt DateTime @default(now())
+  issues    Issue[]
+
+  @@unique([number, year])
+}
+
+model Issue {
+  id        String    @id @default(cuid())
+  number    Int
+  volumeId  String
+  isCurrent Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  articles  Article[]
+  volume    Volume    @relation(fields: [volumeId], references: [id], onDelete: Cascade)
+
+  @@unique([number, volumeId])
+}
+
+model Article {
+  id            String          @id @default(cuid())
+  title         String
+  slug          String          @unique
+  abstract      String?
+  keywords      String[]
+  articleType   String          @default("Original Research Article")
+  doi           String?
+  pdfUrl        String?
+  pageStart     Int?
+  pageEnd       Int?
+  publishedAt   DateTime?
+  receivedAt    DateTime?
+  acceptedAt    DateTime?
+  issueId       String
+  references    String[]
+  viewCount     Int             @default(0)
+  downloadCount Int             @default(0)
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  issue         Issue           @relation(fields: [issueId], references: [id], onDelete: Cascade)
+  authors       ArticleAuthor[]
+}
+
+model Author {
+  id          String          @id @default(cuid())
+  name        String
+  email       String?
+  affiliation String?
+  createdAt   DateTime        @default(now())
+  articles    ArticleAuthor[]
+}
+
+model ArticleAuthor {
+  id        String  @id @default(cuid())
+  articleId String
+  authorId  String
+  order     Int     @default(0)
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  author    Author  @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  @@unique([articleId, authorId])
+}
+
+model Editor {
+  id          String   @id @default(cuid())
+  name        String
+  title       String?
+  affiliation String?
+  imageUrl    String?
+  role        String   @default("Academic Editor")
+  bio         String?
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Indexing {
+  id      String  @id @default(cuid())
+  name    String
+  url     String?
+  logoUrl String?
+  order   Int     @default(0)
+}
+
+model Announcement {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String?
+  content   String
+  imageUrl  String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+}
+
+model Page {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  title     String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
