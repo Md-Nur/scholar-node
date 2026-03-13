@@ -179,10 +179,13 @@ export default async function ArticlePage({
             <div className="sticky top-24 space-y-6">
               {/* Primary Action */}
               <div className="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-blue-200 dark:border-blue-900/50 shadow-lg shadow-blue-500/5">
-                <button className="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-xl font-semibold transition-all shadow-md group">
+                <a 
+                  href={`/api/articles/${article.id}/download`}
+                  className="w-full flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-6 py-4 rounded-xl font-semibold transition-all shadow-md group"
+                >
                   <Download className="h-5 w-5 group-hover:-translate-y-0.5 transition-transform" />
                   Download Full PDF
-                </button>
+                </a>
                 <div className="flex justify-between items-center mt-4 text-xs font-medium text-zinc-500 dark:text-zinc-400 px-1">
                   <span>File size: ~1.2 MB</span>
                   <span className="text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/30 px-2 py-0.5 rounded">Open Access</span>

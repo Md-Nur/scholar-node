@@ -125,9 +125,12 @@ export default async function IssuePage({
                   </div>
                   
                   <div className="flex gap-3">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 relative z-10 cursor-pointer">
+                    <a 
+                      href={`/api/articles/${article.id}/download`}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 relative z-10 cursor-pointer"
+                    >
                       <FileText className="h-4 w-4" /> PDF
-                    </span>
+                    </a>
                   </div>
                 </div>
               </article>
