@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Scholar Node
 
-## Getting Started
+Scholar Node is a modern, open-source journal management system designed to streamline the academic publishing process. Built with speed and usability in mind, it provides a comprehensive platform for managing journals, articles, authors, and editorial workflows.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Public Portal
+- **Journal Archive**: Browse through past volumes and issues.
+- **Article Discovery**: Search and explore articles with detailed abstracts and keyword indexing.
+- **Announcements**: Stay updated with the latest news from the editorial board.
+- **Testimonials**: Read feedback from researchers and reviewers.
+- **Submissions Guide**: Clear instructions for authors on how to submit their work.
+- **Indexing Info**: Transparent information about abstracting and indexing services.
+
+### Admin Dashboard
+- **Content Management**: Effortlessly manage volumes, issues, and articles.
+- **Author & Editor Profiles**: Maintain a database of contributors and editorial board members.
+- **Announcements & Testimonials**: Control what appears on the front page.
+- **Static Pages**: Create and edit informational pages (e.g., About, Contact).
+- **Settings**: Global configuration for the journal's name and other essential metadata.
+
+## 🛠️ Technology Stack
+
+- **Framework**: [Next.js](https://nextjs.org/) (App Router)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+- **Database**: [PostgreSQL](https://www.postgresql.org/)
+- **ORM**: [Prisma](https://www.prisma.io/)
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+- **Authentication**: Custom Auth with [Bcryptjs](https://www.npmjs.com/package/bcryptjs)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v18 or later)
+- [PostgreSQL](https://www.postgresql.org/) database
+
+### Installation
+
+1. **Clone the repository**:
+   ```bash
+   git clone <repository-url>
+   cd scholar-node
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   bun install
+   # or
+   npm install
+   ```
+
+3. **Environment Setup**:
+   Create a `.env` file in the root directory and add your database connection string:
+   ```env
+   DATABASE_URL="postgresql://user:password@localhost:5432/scholar_node"
+   ```
+
+4. **Database Migration**:
+   ```bash
+   npx prisma db push
+   ```
+
+5. **Run the Development Server**:
+   ```bash
+   npm run dev
+   ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `app/`: Next.js pages, layouts, and API routes.
+- `components/`: Reusable React components (Admin and Public).
+- `lib/`: Utility functions and shared logic (e.g., database client).
+- `prisma/`: Database schema and migration files.
+- `public/`: Static assets like images and fonts.
 
-## Learn More
+## 📜 Scripts
 
-To learn more about Next.js, take a look at the following resources:
+- `npm run dev`: Starts the development server.
+- `npm run build`: Generates Prisma client and builds the application for production.
+- `npm run start`: Starts the production server.
+- `npm run lint`: Runs ESLint to check for code quality issues.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is licensed under the MIT License - see the LICENSE file for details.
