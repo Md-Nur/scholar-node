@@ -16,6 +16,7 @@ export default function ArticleForm({ article, issues }: { article?: any, issues
     keywords: article?.keywords?.join(", ") || "",
     doi: article?.doi || "",
     articleType: article?.articleType || "Research Article",
+    pdfUrl: article?.pdfUrl || "",
     issueId: article?.issueId || "",
     pageStart: article?.pageStart || "",
     pageEnd: article?.pageEnd || "",
@@ -30,12 +31,36 @@ export default function ArticleForm({ article, issues }: { article?: any, issues
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // Submit wiring goes here
-    setTimeout(() => {
-      setLoading(false);
-      alert("Article saved successfully!");
+    
+    try {
+      const url = isEditing ? `/api/articles/${article.id}` : "/api/articles";
+      const method = isEditing ? "PATCH" : "POST";
+      
+      const response = await fetch(url, {
+        method,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          keywords: formData.keywords.split(",").map((k: string) => k.trim()).filter((k: string) => k),
+          pageStart: formData.pageStart ? parseInt(formData.pageStart as string) : null,
+          pageEnd: formData.pageEnd ? parseInt(formData.pageEnd as string) : null,
+          publishedAt: formData.publishedAt ? new Date(formData.publishedAt).toISOString() : null,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to save article");
+      }
+
+      alert(isEditing ? "Article updated successfully!" : "Article created successfully!");
       router.push("/admin/articles");
-    }, 1000);
+      router.refresh();
+    } catch (error) {
+      console.error("Error saving article:", error);
+      alert("Error saving article. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -173,6 +198,23 @@ export default function ArticleForm({ article, issues }: { article?: any, issues
                       value={formData.doi}
                       onChange={handleChange}
                       placeholder="e.g. 10.1234/journal.abs"
+                      className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-700 rounded-xl pl-10 pr-4 py-3 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" 
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">PDF URL</label>
+                  <div className="relative">
+                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                      <FileText className="h-4 w-4 text-zinc-400" />
+                    </div>
+                    <input 
+                      type="text" 
+                      name="pdfUrl"
+                      value={formData.pdfUrl}
+                      onChange={handleChange}
+                      placeholder="e.g. /pdfs/sample-article.pdf"
                       className="w-full bg-zinc-50 dark:bg-zinc-950 border border-zinc-300 dark:border-zinc-700 rounded-xl pl-10 pr-4 py-3 text-zinc-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all text-sm" 
                     />
                   </div>

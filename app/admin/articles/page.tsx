@@ -2,6 +2,7 @@ import prisma from "@/lib/db";
 import Link from "next/link";
 import { format } from "date-fns";
 import { Plus, FileText, Search, Filter, MoreVertical, Edit, Trash2, Eye } from "lucide-react";
+import DeleteArticleButton from "@/components/admin/DeleteArticleButton";
 
 export const revalidate = 0;
 
@@ -139,12 +140,7 @@ export default async function AdminArticlesPage({
                         >
                           <Edit className="w-4 h-4" />
                         </Link>
-                        <button 
-                          className="p-2 text-zinc-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors"
-                          title="Delete article"
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
+                        <DeleteArticleButton articleId={article.id} articleTitle={article.title} />
                       </div>
                     </td>
                   </tr>

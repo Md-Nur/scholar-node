@@ -130,12 +130,18 @@ export default async function SubmissionsPage() {
                 Download our official formatting templates to ensure your manuscript meets all layout requirements.
               </p>
               <div className="flex flex-col gap-3">
-                <button className="flex items-center justify-between w-full bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-lg border border-white/10 transition-colors text-sm font-medium">
+                <a 
+                  href="/templates/manuscript-template.zip" 
+                  className="flex items-center justify-between w-full bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-lg border border-white/10 transition-colors text-sm font-medium"
+                >
                   MS Word Template <Download className="w-4 h-4 ml-2 opacity-70" />
-                </button>
-                <button className="flex items-center justify-between w-full bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-lg border border-white/10 transition-colors text-sm font-medium">
+                </a>
+                <a 
+                  href="/templates/manuscript-template.zip" 
+                  className="flex items-center justify-between w-full bg-white/10 hover:bg-white/20 px-4 py-2.5 rounded-lg border border-white/10 transition-colors text-sm font-medium"
+                >
                   LaTeX Template <Download className="w-4 h-4 ml-2 opacity-70" />
-                </button>
+                </a>
               </div>
             </div>
           </div>
