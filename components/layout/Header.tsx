@@ -43,6 +43,9 @@ export default function Header({ settings }: { settings: Record<string, string> 
               <Link href="/archives" className="text-sm font-medium text-zinc-600 hover:text-blue-600 transition-colors dark:text-zinc-300 dark:hover:text-blue-400">
                 Archives
               </Link>
+              <Link href="/announcements" className="text-sm font-medium text-zinc-600 hover:text-blue-600 transition-colors dark:text-zinc-300 dark:hover:text-blue-400">
+                Announcements
+              </Link>
               <Link href="/submissions" className="text-sm font-medium text-zinc-600 hover:text-blue-600 transition-colors dark:text-zinc-300 dark:hover:text-blue-400">
                 Submission
               </Link>
