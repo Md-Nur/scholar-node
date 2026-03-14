@@ -50,7 +50,7 @@ export default function Header({ settings }: { settings: Record<string, string> 
                 Submission
               </Link>
               <Link href="/indexing" className="text-sm font-medium text-zinc-600 hover:text-blue-600 transition-colors dark:text-zinc-300 dark:hover:text-blue-400">
-                Abstracting & Indexing
+                Indexing
               </Link>
             </nav>
           </div>
